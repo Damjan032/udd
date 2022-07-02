@@ -1,0 +1,131 @@
+<div class="container-fluid" style="width: 100%;">
+    <div class="mb-4"></div>
+    <div style="margin: auto; width: 70%;" *ngFor="let param of paramList" class="mt-n4">
+        <mat-form-field appearance="outline" class="mr-2" style="width: 27%;" *ngIf="paramList.indexOf(param) != 0">
+            <mat-select [(ngModel)]="param.paramType">
+                <mat-option value="AND">
+                    AND
+                </mat-option>
+                <mat-option value="OR">
+                    OR
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mr-2" style="width: 27%; visibility: hidden;"
+            *ngIf="paramList.indexOf(param) == 0">
+            <mat-select>
+                <mat-option value="AND">
+                    AND
+                </mat-option>
+                <mat-option value="OR">
+                    OR
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mr-2" style="width: 27%;">
+            <mat-select [(ngModel)]="param.paramName" (selectionChange)="paramChanged(paramList.indexOf(param))">
+                <mat-option value="firstName">
+                    First name
+                </mat-option>
+                <mat-option value="lastName">
+                    Last name
+                </mat-option>
+                <mat-option value="cv">
+                    CV content
+                </mat-option>
+                <mat-option value="educationDegree">
+                    Education degree
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="search-input mt-4" style="width: 27%;"
+            *ngIf="param.paramName != 'educationDegree'">
+            <input matInput type="text" [placeholder]="param.paramNamePreview" [(ngModel)]="param.paramValue" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="search-input mt-4" style="width: 13%;"
+            *ngIf="param.paramName == 'educationDegree'">
+            <mat-select [(ngModel)]="param.paramValue">
+                <mat-option value="1 - Less than a high school diploma">
+                    1 - Less than a high school diploma
+                </mat-option>
+                <mat-option value="2 - High school diploma">
+                    2 - High school diploma
+                </mat-option>
+                <mat-option value="3 - Associate's degree">
+                    3 - Associate's degree
+                </mat-option>
+                <mat-option value="4 - Bachelor's degree">
+                    4 - Bachelor's degree
+                </mat-option>
+                <mat-option value="5 - Master's degree">
+                    5 - Master's degree
+                </mat-option>
+                <mat-option value="6 - Doctoral degree">
+                    6 - Doctoral degree
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="search-input ml-2 mt-4" style="width: 13%;"
+            *ngIf="param.paramName == 'educationDegree'">
+            <mat-select [(ngModel)]="param.paramValue2">
+                <mat-option value="1 - Less than a high school diploma">
+                    1 - Less than a high school diploma
+                </mat-option>
+                <mat-option value="2 - High school diploma">
+                    2 - High school diploma
+                </mat-option>
+                <mat-option value="3 - Associate's degree">
+                    3 - Associate's degree
+                </mat-option>
+                <mat-option value="4 - Bachelor's degree">
+                    4 - Bachelor's degree
+                </mat-option>
+                <mat-option value="5 - Master's degree">
+                    5 - Master's degree
+                </mat-option>
+                <mat-option value="6 - Doctoral degree">
+                    6 - Doctoral degree
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button type="button" class="btn btn-danger ml-2 mb-2"
+            (click)="remove(paramList.indexOf(param))">Remove</button>
+    </div>
+    <div style="margin: auto; width: 70%;" class="mt-n4">
+        <mat-form-field appearance="outline" class="search-input mt-4" style="width: 81%; visibility: hidden;">
+            <input matInput type="text" />
+        </mat-form-field>
+        <button type="button" class="btn btn-info ml-4 mt-n2 mb-4" (click)="addField()">Add field</button>
+    </div>
+    <div class="div-centered">
+        <button type="button" class="btn btn-primary mt-n4 mb-4" (click)="search()"
+            style="width: 150px;">Search</button>
+    </div>
+    <div>
+        <h4 *ngIf="results?.totalElements == 0" class="div-centered my-4">No results.</h4>
+        <mdb-card id="res.id" *ngFor="let res of results.content
+            | paginate
+                : {
+                    itemsPerPage: size,
+                    currentPage: page,
+                    totalItems: results?.totalElements
+                    };
+            let i = index" class="align-self-center">
+            <mdb-card-body class="d-flex flex-column">
+
+                <mdb-card-title>
+                    <h1>{{ res.basicInfo }}</h1>
+                </mdb-card-title>
+
+                <mdb-card-text>
+                    <h3 [innerHTML]="res.cv.content"></h3>
+                </mdb-card-text>
+
+            </mdb-card-body>
+        </mdb-card>
+    </div>
+    <div class="mt-3 div-centered">
+        <pagination-controls previousLabel="Previous" nextLabel="Next" (pageChange)="handlePageChange($event)">
+        </pagination-controls>
+    </div>
+</div>

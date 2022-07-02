@@ -1,0 +1,12 @@
+@use '../../base';
+
+pagination-controls {
+  @extend %content-center;
+  margin: 20px;
+}
+.containerCard{
+  max-width: 300px;
+}
+.white-text{
+  color: white;
+}

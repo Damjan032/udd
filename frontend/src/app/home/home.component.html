@@ -1,0 +1,22 @@
+<div class="content" role="main">
+    <mdb-card>
+        <mdb-card-body>
+            <div class="card-deck"
+                style="margin-left: 400px; margin-right: 400px; margin-top: 50px; margin-bottom: 50px;">
+                <mdb-card id="job.id" *ngFor="let job of jobs" class="align-self-center">
+                    <mdb-card-body class="d-flex flex-column">
+                        <mdb-card-title class="align-self-center">
+                            <h2>{{ job.name }}</h2>
+                        </mdb-card-title>
+
+                        <mdb-card-text *ngIf="job.description">
+                            <h3>{{job.description}}</h3>
+                        </mdb-card-text>
+
+                        <button type="button" class="btn btn-primary" (click)="apply()">Apply for the job</button>
+                    </mdb-card-body>
+                </mdb-card>
+            </div>
+        </mdb-card-body>
+    </mdb-card>
+</div>

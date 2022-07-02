@@ -1,0 +1,5 @@
+[0118/221153.697:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0118/222805.385:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0119/005006.366:ERROR:filesystem_win.cc(148)] DeleteFile C:\Users\Home\AppData\Local\Temp\karma-62317149\Crashpad\reports\ca83de6b-8570-46dd-bc29-884a8dd98c85.dmp: The process cannot access the file because it is being used by another process. (0x20)
+[0119/010311.311:ERROR:process_info.cc(359)] UncheckedAllocate
+

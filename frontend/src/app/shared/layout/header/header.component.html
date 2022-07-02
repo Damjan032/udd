@@ -1,0 +1,44 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark" class="navCss" [containerInside]="false">
+  <mdb-navbar-brand><a class="navbar-brand" routerLink="" routerLinkActive="active"><img height="40" width="40"
+        src="../../../../assets/Logo.png"></a></mdb-navbar-brand>
+  <links>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a *ngIf="!loggedIn" class="nav-link waves-light font-weight-bolder ml-2 mt-2 h6" routerLink=""
+          routerLinkActive="active" mdbWavesEffect>Jobs</a>
+      </li>
+      <li class="nav-item">
+        <a *ngIf="loggedIn" class="nav-link waves-light font-weight-bolder ml-2 mt-2 h6" routerLink="/simple-search"
+          mdbWavesEffect>Search all</a>
+      </li>
+      <li class="nav-item">
+        <a *ngIf="loggedIn" class="nav-link waves-light font-weight-bolder ml-2 mt-2 h6" routerLink="/advanced-search"
+          mdbWavesEffect>Advanced search</a>
+      </li>
+      <li class="nav-item">
+        <a *ngIf="loggedIn" class="nav-link waves-light font-weight-bolder ml-2 mt-2 h6" routerLink="/geo-search"
+          routerLinkActive="active" mdbWavesEffect>Geo search</a>
+      </li>
+      <li class="nav-item">
+        <a *ngIf="loggedIn" class="nav-link waves-light font-weight-bolder ml-2 mt-2 h6" routerLink="/statistics"
+          routerLinkActive="active" mdbWavesEffect>Statistics</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a id="signin-navigation" *ngIf="!loggedIn" class="nav-link waves-light font-weight-bolder ml-2 mt-2 h6"
+          routerLink="/auth/sign-in" mdbWavesEffect>Sign in</a>
+      </li>
+      <li class="nav-item">
+        <button *ngIf="loggedIn" mat-icon-button [matMenuTriggerFor]="menu" id="profile-circle-button">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button (click)="logout()" mat-menu-item>
+            <mat-icon>exit_to_app</mat-icon> Log out
+          </button>
+        </mat-menu>
+      </li>
+    </ul>
+  </links>
+</mdb-navbar>

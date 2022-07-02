@@ -1,0 +1,27 @@
+<div class="container-fluid" style="width: 100%;">
+    <div style="margin: auto; width: 50%;">
+        <mat-form-field appearance="outline" class="search-input mt-4" style="width: 80%;">
+            <input matInput type="text" placeholder="Search..." [(ngModel)]="searchField" />
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <button type="button" class="btn btn-primary ml-3" (click)="search()">Search</button>
+    </div>
+    <div>
+        <h4 *ngIf="results?.totalElements == 0" class="div-centered my-4">No results.</h4>
+        <mdb-card id="res.id" *ngFor="let res of results.content
+            | paginate
+                : {
+                    itemsPerPage: size,
+                    currentPage: page,
+                    totalItems: results?.totalElements
+                    };
+            let i = index" class="align-self-center">
+            <app-result [result]="res" [visited]="visitedIds?.includes(res.id)">
+            </app-result>
+        </mdb-card>
+    </div>
+    <div class="mt-3 div-centered">
+        <pagination-controls previousLabel="Previous" nextLabel="Next" (pageChange)="handlePageChange($event)">
+        </pagination-controls>
+    </div>
+</div>

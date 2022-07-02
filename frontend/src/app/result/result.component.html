@@ -1,0 +1,12 @@
+<mdb-card-body class="d-flex flex-column">
+
+    <mdb-card-title>
+        <h1><a [routerLink]="" (click)="displayCV()" [ngClass]="visited ? 'visited' : 'plain'">{{
+                result.basicInfo }}</a>
+        </h1>
+    </mdb-card-title>
+
+    <mdb-card-text>
+        <h3 [innerHTML]="result?.cv.content"></h3>
+    </mdb-card-text>
+</mdb-card-body>
